@@ -1,5 +1,4 @@
 import pygame
-from Tools.PictureUploads import Loadify, TransformImage
 from Menu.SettingSaves import GetRes
 
 pygame.init()

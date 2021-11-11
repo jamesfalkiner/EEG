@@ -1,13 +1,10 @@
 import Initialise
-from Menu.SettingsMenu import SettingsMenu
+import pygame
 from Tools.FontRender import RenderFont, RenderFontBold
 from Tools.PictureUploads import Loadify, TransformImage
-from Menu.UpgradesMenu import UpgradesMenu
-from Menu.PartsMenu import PartsMenu
-from Music.Music import *
 from TestOne import TestOneMenu
 from TestTwo import TestTwoMenu
-from Menu.Staff.Staff import StaffMenu
+
 
 
 
