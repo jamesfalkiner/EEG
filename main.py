@@ -1,4 +1,3 @@
-import Initialise
 from Menu.SettingsMenu import SettingsMenu
 from Tools.FontRender import RenderFont, RenderFontBold
 from Tools.PictureUploads import Loadify, TransformImage
@@ -13,9 +12,6 @@ from Menu.Staff.Staff import StaffMenu
 
 """Main Menu"""
 def MainMenu(screen):
-    image1 = Initialise.upgrade_bars_images
-    image2 = Initialise.buttons_images
-    image3 = Initialise.upgrade_levels_text_images
     background_image = Loadify("Images/Backgrounds/nebula.png")
     background_image = TransformImage(background_image, Initialise.width, Initialise.height)
 
