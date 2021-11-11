@@ -1,3 +1,4 @@
+import Initialise
 from Menu.SettingsMenu import SettingsMenu
 from Tools.FontRender import RenderFont, RenderFontBold
 from Tools.PictureUploads import Loadify, TransformImage
@@ -15,7 +16,6 @@ def MainMenu(screen):
     background_image = Loadify("Images/Backgrounds/nebula.png")
     background_image = TransformImage(background_image, Initialise.width, Initialise.height)
 
-    MainMenuMusic()
     LBLUE = (0, 204, 204)
     WHITE = (255,255,255)
 
