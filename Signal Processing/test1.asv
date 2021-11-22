@@ -1,0 +1,20 @@
+clear all
+close all
+clear variables
+T = readtable('test1data');
+T([1],:) = [];
+% plot(T.Timestamp_Formatted_, T.EXGChannel0);
+hold on
+plot(T.Timestamp_Formatted_, T.EXGChannel1);
+legend 
+plot(T.Timestamp_Formatted_, T.EXGChannel2);
+plot(T.Timestamp_Formatted_, T.EXGChannel3);
+plot(T.Timestamp_Formatted_, T.EXGChannel4);
+plot(T.Timestamp_Formatted_, T.EXGChannel5);
+plot(T.Timestamp_Formatted_, T.EXGChannel6);
+plot(T.Timestamp_Formatted_, T.EXGChannel7);
+plot(T.Timestamp_Formatted_, T.AccelChannel0);
+plot(T.Timestamp_Formatted_, T.AccelChannel1);
+%plot(T.Timestamp_Formatted_, T.AccelChannel2);
+legend
+hold off
