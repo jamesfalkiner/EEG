@@ -2,8 +2,10 @@ import Initialise
 import pygame
 from Tools.FontRender import RenderFont, RenderFontBold
 from Tools.PictureUploads import Loadify, TransformImage
-from TestOne import TestOneMenu
-from TestTwo import TestTwoMenu
+from FreqTest import FreqTest
+from MapTest import MapTest
+from LeftRightTest import LeftRightTest
+from Menu.SettingSaves import GetRes
 
 
 
@@ -16,15 +18,26 @@ def MainMenu(screen):
     LBLUE = (0, 204, 204)
     WHITE = (255,255,255)
 
-    font1 = RenderFontBold("Test One", 100, WHITE)
-    font2 = RenderFontBold("Test Two", 100, WHITE)
+    width = int(GetRes()[0])
+    height = int(GetRes()[1])
+
+    font1 = RenderFontBold("Frequency Test", 57, WHITE)
+    font2 = RenderFontBold("Left/Right Test", 57, WHITE)
+    font3 = RenderFontBold("Map Test", 57, WHITE)
     #font3 = RenderFont("Upgrades [3]", 20, BLACK)
     #font4 = RenderFont("Shop [4]", 20, BLACK)
     #font5 = RenderFont("Staff [5]", 20, BLACK)
 
+    button_width = 500
+    button_length = 250
+
+    font1coords = [width/2-button_width/2, (4*height)/18-button_length/2, button_width, button_length]
+    font2coords = [width/2-button_width/2, (9*height)/18-button_length/2, button_width, button_length]
+    font3coords = [width/2-button_width/2, (14*height)/18-button_length/2, button_width, button_length]
     button_list = []
-    button_list.append(pygame.Rect(700, 250, 500, 250))
-    button_list.append(pygame.Rect(700, 550, 500, 250))
+    button_list.append(pygame.Rect(font1coords))
+    button_list.append(pygame.Rect(font2coords))
+    button_list.append(pygame.Rect(font3coords))
 
 
     on_main_menu = True
@@ -41,15 +54,18 @@ def MainMenu(screen):
                 if click:
                     show =True
                     if button_list.index(button) == 0:
-                        TestOneMenu(screen).DisplayWindow()
+                        FreqTest(screen).DisplayWindow()
 
                     if button_list.index(button) == 1:
-                        TestTwoMenu(screen).DisplayWindow()
+                        LeftRightTest(screen).DisplayWindow()
+
+                    if button_list.index(button) == 2:
+                        MapTest(screen).DisplayWindow()
 
 
-        screen.blit(font1, [740, 330])
-        screen.blit(font2, [740, 630])
-        #screen.blit(font3, [950, 450])
+        screen.blit(font1, [font1coords[0]+45,font1coords[1]+95])
+        screen.blit(font2, [font2coords[0]+45,font2coords[1]+95])
+        screen.blit(font3, [font3coords[0]+125,font3coords[1]+95])
         #screen.blit(font4, [950, 600])
         #screen.blit(font5, [950, 750])
 
