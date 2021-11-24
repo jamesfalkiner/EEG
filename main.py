@@ -4,8 +4,10 @@ from Tools.FontRender import RenderFont, RenderFontBold
 from Tools.PictureUploads import Loadify, TransformImage
 from FreqTest import FreqTest
 from MapTest import MapTest
+from parameter_menu import ParameterMenu
 from LeftRightTest import LeftRightTest
 from Menu.SettingSaves import GetRes
+from SettingsMenuEEG import ParameterMenu
 
 
 
@@ -24,6 +26,8 @@ def MainMenu(screen):
     font1 = RenderFontBold("Frequency Test", 57, WHITE)
     font2 = RenderFontBold("Left/Right Test", 57, WHITE)
     font3 = RenderFontBold("Map Test", 57, WHITE)
+    font4 = RenderFontBold("Settings", 30, WHITE)
+    font4 = pygame.transform.rotate(font4, -90)
     #font3 = RenderFont("Upgrades [3]", 20, BLACK)
     #font4 = RenderFont("Shop [4]", 20, BLACK)
     #font5 = RenderFont("Staff [5]", 20, BLACK)
@@ -34,10 +38,12 @@ def MainMenu(screen):
     font1coords = [width/2-button_width/2, (4*height)/18-button_length/2, button_width, button_length]
     font2coords = [width/2-button_width/2, (9*height)/18-button_length/2, button_width, button_length]
     font3coords = [width/2-button_width/2, (14*height)/18-button_length/2, button_width, button_length]
+    font4coords = [width/2-button_width/2+button_width+25, (14*height)/18-button_length/2, button_width/5, button_length]
     button_list = []
     button_list.append(pygame.Rect(font1coords))
     button_list.append(pygame.Rect(font2coords))
     button_list.append(pygame.Rect(font3coords))
+    button_list.append(pygame.Rect(font4coords))
 
 
     on_main_menu = True
@@ -62,10 +68,15 @@ def MainMenu(screen):
                     if button_list.index(button) == 2:
                         MapTest(screen).DisplayWindow()
 
+                    if button_list.index(button) == 3:
+                        ParameterMenu(screen).DisplayWindow()
+
 
         screen.blit(font1, [font1coords[0]+45,font1coords[1]+95])
         screen.blit(font2, [font2coords[0]+45,font2coords[1]+95])
         screen.blit(font3, [font3coords[0]+125,font3coords[1]+95])
+
+        screen.blit(font4, [font4coords[0] + 35, font4coords[1] + 50])
         #screen.blit(font4, [950, 600])
         #screen.blit(font5, [950, 750])
 

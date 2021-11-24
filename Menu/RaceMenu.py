@@ -1,5 +1,4 @@
 import pygame
-from Music.Music import StopMusic
 from Tools.FontRender import RenderFont
 from MainV2 import RunLevel
 from Start import Start
@@ -86,7 +85,7 @@ class TierMenu(object):
                 if buttons.collidepoint(mx, my):
                     pygame.draw.rect(self.screen, self.GREEN, buttons)
                     if click:
-                        StopMusic()
+
                         if self.button_list.index(buttons) == 0:
                             RunLevel(self.screen, 1, 1).RunLevel()
                         if self.button_list.index(buttons) == 1:
