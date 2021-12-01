@@ -40,8 +40,8 @@ class FreqTest(object):
         current_time = pygame.time.get_ticks()
         # 100
         # how long to show or hide
-        delay_alpha = 100  # 500ms = 0.5s
-        delay_beta = 40  # 500ms = 0.5s
+        delay_alpha = 62.5  # 500ms = 0.5s
+        delay_beta = 33  # 500ms = 0.5s
 
         # time of next change
         change_time_alpha = current_time + delay_alpha
