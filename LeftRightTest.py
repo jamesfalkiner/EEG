@@ -14,7 +14,6 @@ class LeftRightTest(object):
         self.GREY = (150, 150, 150)
         self.LGREY = (200, 200, 200)
         self.WHITE = (252, 252, 252)
-        #############
         self.screen = screen
         self.on_race_menu = True
         self.screen_width, self.screen_height = pygame.display.get_surface().get_size()

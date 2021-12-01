@@ -4,6 +4,9 @@ from Tools.PictureUploads import Loadify, TransformImage
 import Initialise
 
 
+# To do. Add a button for the screen to go black. Increase contrast and size of left and right side
+# Replace tanks with other images. Have adjustable frequencies
+# Live read from a file.
 
 class MapTest(object):
     def __init__(self, screen):

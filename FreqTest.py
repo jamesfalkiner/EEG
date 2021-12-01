@@ -26,13 +26,13 @@ class FreqTest(object):
     def DrawButtons(self):
 
         for num in range(2):
-            self.button_list.append(pygame.Rect(((self.screen_width + 250)/2) * num + 200, (self.screen_height - 200)/2, 400, 100))
+            self.button_list.append(pygame.Rect(((self.screen_width + 250)/2) * num+215, (self.screen_height - 100)/2, 400, 100))
 
         self.button_list.append(
-            pygame.Rect(((self.screen_width + 250) / 3) - 180, (self.screen_height / 2)-100, 800, 100))
+            pygame.Rect(((self.screen_width + 250) / 3) , (self.screen_height / 2)-100, 800, 100))
 
         self.button_list.append(
-            pygame.Rect(((self.screen_width) /2) -15 , (self.screen_height / 2)-110, 5, 120))
+            pygame.Rect(((self.screen_width) /2) , (self.screen_height / 2)-110, 5, 120))
 
     def DisplayWindow(self):
         self.DrawButtons()
@@ -40,8 +40,8 @@ class FreqTest(object):
         current_time = pygame.time.get_ticks()
         # 100
         # how long to show or hide
-        delay_alpha = 100  # 500ms = 0.5s
-        delay_beta = 40  # 500ms = 0.5s
+        delay_alpha = 62.5  # 500ms = 0.5s
+        delay_beta = 20  # 500ms = 0.5s
 
         # time of next change
         change_time_alpha = current_time + delay_alpha
@@ -54,9 +54,9 @@ class FreqTest(object):
             beta_detected = True
             mx, my = pygame.mouse.get_pos()
             self.screen.fill(self.LGREY)
-            pygame.draw.rect(self.screen, self.RED, self.button_list[2])
-            pygame.draw.circle(self.screen, self.GREY, self.button_list[0].center, 200)
-            pygame.draw.circle(self.screen, self.GREY, self.button_list[1].center, 200)
+            #pygame.draw.rect(self.screen, self.RED, self.button_list[2])
+            pygame.draw.circle(self.screen, self.WHITE, self.button_list[0].center, 420)
+            pygame.draw.circle(self.screen, self.WHITE, self.button_list[1].center, 420)
 
                 # if buttons.collidepoint(mx, my):
                 #     pygame.draw.rect(self.screen, self.GREEN, buttons)
@@ -64,8 +64,8 @@ class FreqTest(object):
                 #         if self.button_list.index(buttons) == 0:
                 #             TierMenu(self.screen).DisplayWindow()
             click = False
-            self.screen.blit(self.templeft, [self.button_list[0].center[0]-75,self.button_list[0].center[1]-150])
-            self.screen.blit(self.tempright, [self.button_list[1].center[0]-80,self.button_list[2].center[1]-150])
+            #self.screen.blit(self.templeft, [self.button_list[0].center[0]-75,self.button_list[0].center[1]-150])
+            #self.screen.blit(self.tempright, [self.button_list[1].center[0]-80,self.button_list[2].center[1]-150])
 
             # --- updates ---
 
@@ -73,10 +73,10 @@ class FreqTest(object):
 
             # is time to change ?
             if show_alpha:
-                pygame.draw.circle(self.screen, self.RED, self.button_list[1].center, 200)
+                pygame.draw.circle(self.screen, self.BLACK, self.button_list[1].center, 400)
 
             if show_beta:
-                pygame.draw.circle(self.screen, self.RED, self.button_list[0].center, 200)
+                pygame.draw.circle(self.screen, self.BLACK, self.button_list[0].center, 400)
 
             if current_time >= change_time_alpha:
                 # time of next change
@@ -92,7 +92,7 @@ class FreqTest(object):
 
             # --- draws centre line ---
 
-            pygame.draw.rect(self.screen, self.GREEN, self.button_list[3], 15)
+            #pygame.draw.rect(self.screen, self.GREEN, self.button_list[3], 15)
 
 
 
@@ -100,15 +100,23 @@ class FreqTest(object):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.on_race_menu = False
-                    if event.key == pygame.K_RIGHT:
-                        print("right")
-                        alpha_detected = 1
-                        self.button_list[3].move_ip(20,0)
-                    if event.key == pygame.K_LEFT:
-                        beta_detected = 1
-                        print("left")
-                        self.button_list[3].move_ip(-20, 0)
 
-
+#  0                  if event.key == pygame.K_RIGHT:
+#                        print("right")
+#                        alpha_detected = 1
+#                        self.button_list[3].move_ip(20,0)
+#                    if event.key == pygame.K_LEFT:
+#                        beta_detected = 1
+#                        print("left")
+#                        self.button_list[3].move_ip(-20, 0)
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_BACKSPACE:
+                        pressed = True
+                        while pressed:
+                            self.screen.fill(self.BLACK)
+                            pygame.display.update()
+                            for event1 in pygame.event.get():
+                                if event1.type == pygame.KEYUP:
+                                    pressed = False
             pygame.display.update()
 
