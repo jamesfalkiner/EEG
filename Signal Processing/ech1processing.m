@@ -14,7 +14,7 @@ time2 = T.Timestamp_Formatted_;
 for k = 1:length(data)
     data(k) = data(k)+time(k);
 end
-%plot(time2,data)
+plot(time2,data)
 %the x value needs to x + y
 
-plot(T.Timestamp,T.EXGChannel1)
+%plot(T.Timestamp,T.EXGChannel1)
