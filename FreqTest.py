@@ -40,8 +40,8 @@ class FreqTest(object):
         current_time = pygame.time.get_ticks()
         # 100
         # how long to show or hide
-        delay_alpha = 62.5  # 500ms = 0.5s
-        delay_beta = 20  # 500ms = 0.5s
+        delay_alpha = 36   # 500ms = 0.5s
+        delay_beta = 50  # 500ms = 0.5s
 
         # time of next change
         change_time_alpha = current_time + delay_alpha
@@ -53,10 +53,10 @@ class FreqTest(object):
             alpha_detected = False
             beta_detected = True
             mx, my = pygame.mouse.get_pos()
-            self.screen.fill(self.LGREY)
+            self.screen.fill(self.BLACK)
             #pygame.draw.rect(self.screen, self.RED, self.button_list[2])
-            pygame.draw.circle(self.screen, self.WHITE, self.button_list[0].center, 420)
-            pygame.draw.circle(self.screen, self.WHITE, self.button_list[1].center, 420)
+            pygame.draw.circle(self.screen, self.RED, self.button_list[0].center, 50)
+            pygame.draw.circle(self.screen, self.RED, self.button_list[1].center, 50)
 
                 # if buttons.collidepoint(mx, my):
                 #     pygame.draw.rect(self.screen, self.GREEN, buttons)
@@ -73,10 +73,10 @@ class FreqTest(object):
 
             # is time to change ?
             if show_alpha:
-                pygame.draw.circle(self.screen, self.BLACK, self.button_list[1].center, 400)
+                pygame.draw.circle(self.screen, self.BLACK, self.button_list[1].center, 50)
 
             if show_beta:
-                pygame.draw.circle(self.screen, self.BLACK, self.button_list[0].center, 400)
+                pygame.draw.circle(self.screen, self.BLACK, self.button_list[0].center, 50)
 
             if current_time >= change_time_alpha:
                 # time of next change

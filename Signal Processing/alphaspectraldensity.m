@@ -2,31 +2,110 @@ clear all
 close all
 clear variables
 samplefreq = 250;
-T = readtable('testleftright2');
+T = readtable('test5');
 %delete start up values
-T([1:200],:) = [];
+T([1:400],:) = [];
 data = T.EXGChannel4;
 %data = lowpass(T.EXGChannel4,62,250);
 timedata = T.Timestamp_Formatted_;
-pointsize= 1250
+pointsize= 1000;
 points = length(data)/pointsize;
 
-p = bandpower(data,250,[8,12]);
 datapointlistleft = [];
 datapointlistright = [];
+blueminusredlist=[];
 timelist=[];
+zerolist=[]
 for n = 0:points-1
+    zerolist=[zerolist 0];
     x=data(((n*pointsize)+1):((n+1)*pointsize))
     datapointleft = bandpower(x,samplefreq,[7.8,8.2]);
-    datapointright = bandpower(x,samplefreq,[14.8,15.2])*1.7;
+    datapointright = bandpower(x,samplefreq,[24.5,25.5])*3;
+    blueredpoint = datapointleft-datapointright;
     timepoint =timedata((n+1)*pointsize);
     timelist=[timelist timepoint];
     datapointlistleft=[datapointlistleft datapointleft];
     datapointlistright = [datapointlistright datapointright];
+    blueminusredlist = [blueminusredlist blueredpoint];
+end
+%events
+events=[];
+for i=0:30*samplefreq
+    events=[events 0];
+end
+for j = 0:2
+    for i=0:30*samplefreq
+        events=[events -5];
+    end
+    for i=0:15*samplefreq
+        events=[events 0];
+    end
+    for i=0:30*samplefreq
+        events=[events 5];
+    end
+    for i=0:15*samplefreq
+        events=[events 0];
+    end
+end
+diff=length(timedata)-length(events)
+for i=0:diff-1
+        events=[events 0];
 end
 
+% %for the file Rida messed up
+% for i=0:30*samplefreq
+%         events=[events -5];
+%     end
+%     for i=0:15*samplefreq
+%         events=[events 0];
+%     end
+%     for i=0:30*samplefreq
+%         events=[events 5];
+%     end
+%     for i=0:30*samplefreq
+%         events=[events 0];
+%     end
+%  
+%  for i=0:30*samplefreq
+%         events=[events -5];
+%     end
+%     for i=0:15*samplefreq
+%         events=[events 0];
+%     end
+%     for i=0:30*samplefreq
+%         events=[events 5];
+%     end
+%     for i=0:15*samplefreq
+%         events=[events 0];
+%     end
+%  for i=0:30*samplefreq
+%         events=[events -5];
+%     end
+%     for i=0:15*samplefreq
+%         events=[events 0];
+%     end
+%     for i=0:30*samplefreq
+%         events=[events 5];
+%     end
+%    
+    
+ 
+diff=length(timedata)-length(events)
+for i=0:diff-1
+        events=[events 0];
+end
 N= length(data);
 
-plot(timelist,datapointlistleft);
+%plot(timelist,datapointlistleft);
+figure
 hold on
-plot(timelist,datapointlistright);
+%plot(timelist,datapointlistright);
+plot(timelist,blueminusredlist);
+plot(timedata,events)
+plot(timelist,zerolist);
+
+legend("DIFFERENCE IN SPECTRAL DENSITY (8Hz -25Hz","BENCHMARK(5 = 8Hz, -5 = 25 Hz,)","ZERO")
+xlabel('Time')
+ylabel("Average Spectral Density (W/Hz)")
+grid;
+title('Difference in Spectral Density over time between 8Hz and 25Hz')

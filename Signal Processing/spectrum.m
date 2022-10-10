@@ -2,7 +2,7 @@ clear all
 close all
 clear variables
 Fs = 250;
-T = readtable('testleftright2');
+T = readtable('test3');
 %delete start up values
 T([1:200],:) = [];
 data = T.EXGChannel4
